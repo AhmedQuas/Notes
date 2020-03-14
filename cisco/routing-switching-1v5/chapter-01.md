@@ -159,6 +159,8 @@ Każda sieć powinna spełniać 4 poniższe cechy:
     >Przestrzeganie standardów pozwala producentom sprzętu i oprogramowania koncentrować się na rozwoju i doskonaleniu produktów w obszarze wydajności i pojemności, wiedząc że nowe produkty mogą się zintegrować i ulepszyć istniejącą infrastrukturę.
 
 3. `QoS (Quality of Service, jakość usług)` - gdy chcemy wysłać więcej danych niż mamy dostępnej szerokości pasma, trzeba jakoś to wszystko kolejkować. Niektóre usługi powinny mieć wyższy priorytet(transmisja głosowa), podział na klasy, kategorie, faworyzowanie pakietów o wyższym priorytecie. QoS to również zarządzanie parametrami opóźnień i strat pakietów. Przepełnienie kolejki to automatyczne odrzucanie pakietów, które do niej przychodzą.
+  
+    `Przeciążenie` - stan, w którym zapotrzebowanie na zasoby sieciowe przewyższa dostępną pojemność sieci
 
 4. `Bezpieczeństwo` - podjęcia środków, które mają na celu zapobieanie:
      - nieuprawnionemu dostępowi, ujawnieniu poufnych danych
@@ -199,7 +201,7 @@ Korzyści korzystania z chmury obliczeniowej:
 - zwinna i szybka rozbudowa infrastruktury
 - zmniejszczenie kosztów infrastruktury
 - tworzenie nowych modeli biznesowych
-- możliwość chwilowego zwiększenia mocy obliczeniowej (np. okres świąt lub covid-19)
+- możliwość chwilowego zwiększenia mocy obliczeniowej (np. okres świąt)
 
 `Centra danych` - pozwalają na funkcjonowanie chmur obliczeniowych. Duże obiety z ogronmą liczbą serwerów i dodatkowymi elementami:
 - nadmiarowe połączenia teleinformatyczne
