@@ -247,3 +247,9 @@ Metody ochrony:
 - `VPN` - Virtual Private Network, umożliwiają bezpieczny dostęp do sieci firmowej dla zdalnych pracowników  
 
 >Dodatkowo, bezpieczeństwo musi być implementowane w taki sposób, aby mogło być skalowalne i gotowe na zmiany w ciągle zmieniających się trendach sieciowych.
+
+---
+
+<div style="text-align: right">
+<a href="chapter-02.md">Next Chapter 2</a>
+</div>

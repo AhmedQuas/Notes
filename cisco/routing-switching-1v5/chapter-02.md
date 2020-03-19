@@ -77,6 +77,7 @@ disable                 #priv   -> user
 end => CTRL + Z         # *     -> priv
 line vty 0 4            #config -> config-line
 ```
+
 ### 2.1.2 Struktura poleceń
 
 Każda komenda może być wykonana we odpowiednim trybie konfiguracyjnym.
@@ -288,6 +289,7 @@ Ustawianie IP i maski podsieci na SVI:
 Switch (config)# interface vlan 1
 Switch (config-if)# ip address 192.168.1.10 255.255.255.0
 Switch (config-if)# no shutdown   #int state up
+Switch (config-if)# description opis mojego interfejsu #opcjonalnie
 ```
 >Adres bramy domyślnej jest adresem IP interfejsu routera używanego dla ruchu opuszczającego sieć lokalną
 
@@ -327,3 +329,32 @@ Testowanie połączenia end-to-end
 ```
 C:\> ping 192.168.1.10
 ```
+
+## 2.5 no ip domain-lookup, przeszukiwanie DNS
+
+```
+Router (config)# no ip domain-lookup
+```
+
+## 2.6 clock, zegar
+
+```
+Router# clock set 12:15:00 17 Mar 2020 
+Router# show clock
+```
+
+## 2.7 host table router, switch
+
+Dostępne tylko lokalne w obrębie danego router`a lub przełącznika
+
+```
+Router# ip host PC-C 192.168.1.2
+Router# show ip hosts
+```
+
+---
+
+<div style="display:float;">
+<a style="float:left;"href="chapter-01.md">Prev Chapter 1</a>
+<a style="float:right;" href="chapter-03.md">Next Chapter 3</a>
+</div>
