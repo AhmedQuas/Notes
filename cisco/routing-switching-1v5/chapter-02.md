@@ -354,7 +354,9 @@ Router# show ip hosts
 
 ---
 
-<div style="display:float;">
-<a style="float:left;"href="chapter-01.md">Prev Chapter 1</a>
-<a style="float:right;" href="chapter-03.md">Next Chapter 3</a>
+<div>
+<a href="chapter-01.md">Prev: Chapter 1</a>
+</div>
+<div align="right">
+<a href="chapter-03.md">Next: Chapter 3</a>
 </div>

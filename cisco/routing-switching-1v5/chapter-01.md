@@ -250,6 +250,6 @@ Metody ochrony:
 
 ---
 
-<div style="text-align: right">
-<a href="chapter-02.md">Next Chapter 2</a>
+<div align="right">
+<a href="chapter-02.md">Next: Chapter 2</a>
 </div>
