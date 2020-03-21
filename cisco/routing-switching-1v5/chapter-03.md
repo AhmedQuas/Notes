@@ -8,8 +8,8 @@
       - [3.2.2.1 Model TCP/IP](#3221-model-tcpip)
       - [3.2.2.1 ISO OSI vs TCP/IP](#3221-iso-osi-vs-tcpip)
     - [3.3 Przenoszenie danych w sieci](#33-przenoszenie-danych-w-sieci)
-    - [3.3.1 Dostęp do zasobów lokalnych](#331-dost%c4%99p-do-zasob%c3%b3w-lokalnych)
-    - [3.3.2 Dostęp do zasobów zdalnych](#332-dost%c4%99p-do-zasob%c3%b3w-zdalnych)
+      - [3.3.1 Dostęp do zasobów lokalnych](#331-dost%c4%99p-do-zasob%c3%b3w-lokalnych)
+      - [3.3.2 Dostęp do zasobów zdalnych](#332-dost%c4%99p-do-zasob%c3%b3w-zdalnych)
 
 # Chapter 3: Protokoły sieciowe i komunikacja
 
@@ -206,7 +206,7 @@ Zalety segmentacji:
 
 `Dekapsulacja` - rozpakowywanie, proces odwrotny realizowany u hosta docelowego (odbiorcy), polega na usuwaniu wcześniej dołożonych nagłówków protokołów. Przesyłanie danych w górę stosu TCP/IP
 
-### 3.3.1 Dostęp do zasobów lokalnych
+#### 3.3.1 Dostęp do zasobów lokalnych
 
 `Adres IP` - adres znajdujący się w warstwie 3 składa się z dwóch części:
 - `prefix sieciowy` - pozwala routerom określić do której sieci należy host
@@ -228,7 +228,7 @@ Zazwyczaj znamy adres IP hosta docelowego, jednak nie znamy adresu MAC. W tym ce
 
 >W pierwszym kroku, nadawca wysyła żądanie ARP (ARP Request) do całej sieci LAN. Żądanie to jest komunikatem rozgłoszeniowym zawierającym adres IP urządzenia docelowego. Każde urządzenie w sieci LAN analizuje otrzymane żądanie ARP, aby sprawdzić, czy nie zawiera ono jego adresu IP. W następnym kroku, urządzenie, którego adres IP jest zgodny z adresem zawartym w zapytaniu wysyła odpowiedź (ARP Reply), która skierowana jest tylko do nadawcy. W odpowiedzi ARP zawarty jest adres MAC związany z adresem IP występującym w żądaniu ARP.
 
-### 3.3.2 Dostęp do zasobów zdalnych
+#### 3.3.2 Dostęp do zasobów zdalnych
 
 Kiedy chcemy wysłać dane do hosta zdalnego, czyli takiego, który znajduje się poza naszą siecią to musimy skorzystać z urządzenia, które łączy nas z innymi sieciami, czyli `routera`. 
 

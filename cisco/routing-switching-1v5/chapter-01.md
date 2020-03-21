@@ -87,7 +87,7 @@ Kryteria wyboru odpowiedniego miedium:
 
 `Topologia fizyczna` - przedstawia umiejscowienie fizyczne (uwzględnia rozkład pomieszczeń) urządzeń pośredniczących, rozplanowanie przewodów (czy jak kto woli kabli)
 
-`Topologia logiczna` - identyfikuje urządzenia, porty i adresowanie (adres IP, maski, podział na podsieci)
+`Topologia logiczna` - identyfikuje urządzenia, porty i adresowanie (adres IP, maski, podział na podsieci). Odnosi się do sposobu przenoszenia ramek w sieci między węzłami.
 
 ### 1.2.2 Sieci LAN, WAN i Internet
 `LAN` - Local Area Network:
