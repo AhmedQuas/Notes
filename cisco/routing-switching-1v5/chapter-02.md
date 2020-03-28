@@ -8,6 +8,7 @@
   - [2.2 Podstawowa konfiguracja](#22-podstawowa-konfiguracja)
     - [2.2.1 Host name](#221-host-name)
     - [2.2.2 Hasła do trybów konfiguracji](#222-has%c5%82a-do-tryb%c3%b3w-konfiguracji)
+  - [2.8 Interfejs loopback](#28-interfejs-loopback)
 
 # Chapter 2: Konfiguracja sieciowego systemu operacyjnego
 
@@ -291,7 +292,16 @@ Switch (config-if)# ip address 192.168.1.10 255.255.255.0
 Switch (config-if)# no shutdown   #int state up
 Switch (config-if)# description opis mojego interfejsu #opcjonalnie
 ```
+
 >Adres bramy domyślnej jest adresem IP interfejsu routera używanego dla ruchu opuszczającego sieć lokalną
+
+Ustawienie adresu bramy domyślnej na przełączniku:
+
+```
+Switch (config)# ip default-gateway 192.168.10.1
+```
+
+>Adres IP i brama domyślna przełącznika używana jest tylko w przypadku pakietów, których źródłem jest sam przełącznik.
 
 >Adres serwera DNS jest adresem IP serwera systemu nazw domen (DNS), który jest używany do tłumaczenia adresów domenowych na adresy IP
 
@@ -351,6 +361,10 @@ Dostępne tylko lokalne w obrębie danego router`a lub przełącznika
 Router# ip host PC-C 192.168.1.2
 Router# show ip hosts
 ```
+## 2.8 Interfejs loopback
+
+Może zostać utworzony na routerze w celu zasymulowania dodatkowych sieci LAN.
+
 
 ---
 
