@@ -8,7 +8,6 @@
   - [2.2 Podstawowa konfiguracja](#22-podstawowa-konfiguracja)
     - [2.2.1 Host name](#221-host-name)
     - [2.2.2 Hasła do trybów konfiguracji](#222-has%c5%82a-do-tryb%c3%b3w-konfiguracji)
-  - [2.8 Interfejs loopback](#28-interfejs-loopback)
 
 # Chapter 2: Konfiguracja sieciowego systemu operacyjnego
 
@@ -340,20 +339,22 @@ Testowanie połączenia end-to-end
 C:\> ping 192.168.1.10
 ```
 
-## 2.5 no ip domain-lookup, przeszukiwanie DNS
+## 2.5 Miscellaneous configuration
+
+### 2.5.1 no ip domain-lookup, przeszukiwanie DNS
 
 ```
 Router (config)# no ip domain-lookup
 ```
 
-## 2.6 clock, zegar
+### 2.5.2 clock, zegar
 
 ```
 Router# clock set 12:15:00 17 Mar 2020 
 Router# show clock
 ```
 
-## 2.7 host table router, switch
+### 2.5.3 host table router, switch
 
 Dostępne tylko lokalne w obrębie danego router`a lub przełącznika
 
@@ -361,10 +362,82 @@ Dostępne tylko lokalne w obrębie danego router`a lub przełącznika
 Router# ip host PC-C 192.168.1.2
 Router# show ip hosts
 ```
-## 2.8 Interfejs loopback
+### 2.5.4 Interfejs loopback
 
 Może zostać utworzony na routerze w celu zasymulowania dodatkowych sieci LAN.
 
+### 2.5.5 Konfiguracja SSH
+Do wygenerowania klucza ssh wymagane jest ustawienie nazwy urządzenia i nazwy domeny.
+
+```
+Router (config)# hostname R1 
+R1 (config)# ip domain-name ccna-lab.com
+```
+
+Teraz już możemy przejść do generowania klucza szyfrującego, stworzenia użytkownika (15-> uprawnienia administratora) w lokalnej bazie danych i włączenia obsługi ssh na liniach vty. Na samym końcu zmieniamy metodę logowania na korzystanie z lokalnej bazy danych
+
+```
+R1 (config)# crypto key generate rsa general-keys modulus 1024
+R1 (config)# username admin privilege 15 secret adminpass
+R1 (config)# line vty 0 4
+R1 (config)# transport input [telnet/ssh/all]
+R1 (config)# login local
+```
+
+### 2.5.6 Switch vlan1 default gateway
+
+```
+Switch (config)# interface vlan1
+Switch (config-if)# ip default-gateway 192.168.1.1
+```
+
+### 2.5.7 Wymyszanie odpowiedniej długości haseł
+
+```
+Router (config)# security passwords min-length 10
+```
+
+### 2.5.8 Rozłączanie połączenia po określonym czasie bezczynności
+
+```
+Router (config)# line console 0
+Router (config-line)# exec-timeout 5 0
+Router (config)# line vty 0 4
+Router (config)# exec timeout 5 0
+```
+
+### 2.5.9 Blokowanie możliwości logowania po n nieudanych próbach
+
+Poniższe polecenie zablokuje na 30 sekund możliwość logowanie jeśli w ciągu 120 sekund nastąpiły 2 nieudane próby.
+
+```
+Router (config)# login block-for 30 attempts 2 within 120
+```
+
+### 2.5.10 Odwoływanie sie do kilku interfejsów jednocześnie
+
+```
+Switch (config)# interface range f0/1-4, f0/7-24
+```
+
+### 2.5.11 Backup konfiguracji
+
+Zapisanie konfiguracji na zdalnym serwerze tftp
+```
+Router# copy running-config tftp
+```
+Pobranie konfiguracji routera z serwera tftp
+
+```
+Router# copy tftp running-config
+```
+
+Zapisanie konfiguracji lokalnie
+```
+Router# copy running-config flash
+Router# dir/more
+Router# copy flash:filename running-config
+```
 
 ---
 

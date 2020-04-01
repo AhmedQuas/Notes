@@ -202,7 +202,7 @@ Wpis w tablicy routingu routera zawiera następujące informacje:
 Przykładowy wpis:
 
 ```
-D 10.1.2.0/24 [90/271012] via 209.167.220.226, )0:00:05 Serial0/0/0
+D 10.1.2.0/24 [90/271012] via 209.167.220.226, 0:00:05 Serial0/0/0
 ```
  
  >Oznacza to, że z punktu widzenia routera podejmującego decyzję o kierunku przesłania pakietu, router następnego skoku jest bramą prowadzącą do zdalnych sieci.
