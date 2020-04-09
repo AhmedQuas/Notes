@@ -1,5 +1,5 @@
 ### Spis treści
-- [Chapter 10: Warstaw aplikacji](#chapter-10-warstaw-aplikacji)
+- [Chapter 10: Warstwa aplikacji](#chapter-10-warstwa-aplikacji)
   - [10.1  Protokoły warstwy aplikacji](#101-protoko%c5%82y-warstwy-aplikacji)
     - [10.1.1  Peer-to-peer](#1011-peer-to-peer)
     - [10.1.2  HTTP](#1012-http)
@@ -8,7 +8,7 @@
     - [10.1.4 DHCP](#1014-dhcp)
     - [10.1.5  Usługi udostępniania plików](#1015-us%c5%82ugi-udost%c4%99pniania-plik%c3%b3w)
 
-# Chapter 10: Warstaw aplikacji
+# Chapter 10: Warstwa aplikacji
 
 ## 10.1  Protokoły warstwy aplikacji
 
