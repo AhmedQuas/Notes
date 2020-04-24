@@ -250,3 +250,7 @@ Procedura odzyskiwanie hasła i interfejs `ROMMON`.
 <div>
 <a href="chapter-10.md">Prev: Chapter 10</a>
 </div>
+<div align="right">
+<a href="../routing-switching-2v5/chapter-01.md">Next: Chapter 2.1</a>
+</div>
+
