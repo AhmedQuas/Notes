@@ -144,6 +144,8 @@ Rodzaje adresów IPv6:
 - `anycast` - anycast to adres unicast, który może być przypisany do wielu urządzeń. Pakiet wysyłany na ten adres jest przekierowany do najbliższego urządzenia posiadającego ten adres.
 
 W IPv6 nie ma adresu rozgłoszeniowego, jednak `all-nodes-multicast` ma podobny charakter.
+`FF02::1` - all-nodes-multicast
+`FF02::2` - all-routers-multicast
 
 `Prefix` w IPv6 pełni podobne funkcje jak w IPv4, wskazuje część sieciową adresu, tutaj rozdziela prefix (część sieciowa) od id interfejsu. Typowa długość prefixu dla sieci LAN to /64.
 
