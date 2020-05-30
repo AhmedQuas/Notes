@@ -315,7 +315,13 @@ Konfiguracja:
   R1 (config-if)# ipv6 nd managed-config-flag
   ```
 
-Konfigurowanie klienta odbywa się na tej samej zasadzie jak w przypadku bezstanowego serwera DHCPv6.
+Konfiguracja stanowego klienta DHCP
+
+```
+R1 (config)# interface g0/1
+R1 (config-if)# ipv6 enable
+R1 (config-if)# ipv6 address dhcp
+```
 
 Weryfikowanie poprawności konfiguracji opiera się na tych samych poleceniach jak w przypadku bezstanowego serwera DHCPv6. Ze względu, że jest to stanowy DHCP to możemy uzyskać informację o przypisanych adresach ipv6
 
