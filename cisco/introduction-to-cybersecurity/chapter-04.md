@@ -118,6 +118,3 @@ Tools for incident prevention and detection:
 <div>
 <a href="chapter-03.md">Prev: Chapter 3</a>
 </div>
-<div align="right">
-<a href="chapter-05.md">Next: Chapter 5</a>
-</div>
