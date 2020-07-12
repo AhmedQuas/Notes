@@ -40,10 +40,10 @@ Types of malware:
 - `rootkit` - main goal is to modify the OS to create backdoor, which enables attackeer to access computer remotely. Rootkits uses a software vulnerabilities to perform privilege escalation and modify system files.
   >It is also common for rootkits to modify system forensics and monitoring tools, making them very hard to detect. Often, a computer infected by a rootkit must be `wiped and reinstalled`.
 
-- `virus` - mailicious code that is attached to executable files, most of tehm requires end-user activation and can active on specific date of time. They also can mutate to avoid detection.
+- `virus` - malicious code that is attached to executable files, most of tehm requires end-user activation and can active on specific date of time. They also can mutate to avoid detection.
   >Most viruses are now spread by USB drives, optical disks, network shares, or email.
 
-- `trojan horse` - carries out mailicious operation under the guise of desired operation. It exploits the privileges of the user that runs it.
+- `trojan horse` - carries out malicious operation under the guise of desired operation. It exploits the privileges of the user that runs it.
   >A Trojan horse differs from a virus because it binds itself to non-executable files.
 
 - `worms` - designed to replicate themselves by independently exploiting vulnerabilities in neworks
@@ -96,7 +96,7 @@ Vulnerability exploitation - whole process that consist of gathering information
 
 `DDoS` - Distributed DoS, DoS attack form multiple, coordinated sources, usually using botnet(infected host is called zombies).
 
-`SEO poisoning` - mailicous user could use Search Engine Optimalization(SEO) to make that mailicous website appear higher in search results. 
+`SEO poisoning` - malicous user could use Search Engine Optimalization(SEO) to make that malicous website appear higher in search results. 
 
 ## 2.2 The Cybersecurity Landscape
 
