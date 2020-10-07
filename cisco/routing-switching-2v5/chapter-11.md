@@ -190,3 +190,12 @@ R1 # debug ip nat
 
 R1 # debug ip nat detailed
 ```
+
+---
+
+<div>
+<a href="chapter-10.md">Prev: Chapter 10</a>
+</div>
+<div align="right">
+<a href="../routing-switching-3v5/chapter-01.md">Next: Chapter 3.1</a>
+</div>
