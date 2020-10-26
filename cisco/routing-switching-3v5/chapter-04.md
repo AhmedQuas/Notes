@@ -333,7 +333,7 @@ Wi-Fi Range Extender - wzmacniacz Wi-Fi
 
 Z powodów bezpieczeństwa, sieć gości powinna być odizolowana, z osobnym SSID.
 
-DMZ - 
+DMZ - demilitarized zone, strefa zdemilitaryzowana, miejsce, w którym umieszczamy serwery, które udostępniamy użytkownikom z poza naszej sieci
 
 ---
 
