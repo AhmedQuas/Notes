@@ -445,6 +445,11 @@ R1(config-if)# ipv6 rip RIP-AS default-information originate
 R1(config)# router ospf 1
 R1(config-router)# router-id 1.1.1.1
 R1(config-router)# network 192.168.1.0 0.0.0.255 area 0
+
+OR
+
+R1(config-router)# network 192.168.1.1 0.0.0.0 area 0
+
 R1(config-router)# passive-interface g0/0
 R1(config-router)# default-information originate
 ```
@@ -459,6 +464,39 @@ OR
 R1(config-if)# ip ospf cost 1
 ```
 
+OSPF message MD5 authentication
+
+- global
+  
+  ```
+  R1(config-router)# area 0 authentication message-digest
+  
+  R1(config-if)# ip ospf message-digest-key 1 md5 Cisco123
+  ```
+
+- on single interface
+  
+  ```
+  R1(config-if)# ip ospf message-digest-key 1 md5 Cisco123
+  R1(config-if)# ip ospf authentication message-digest
+  ```
+
+Multiarea OSPF
+
+- network
+
+  ```
+  R1(config-router)# network 10.0.1.0 0.0.0.3 area {area-id}
+  ```
+
+- path summary
+  
+  ```
+  R1(config-router)# area {area-id} range {ip_address} {mask}
+  ```
+
+
+
 Show commands
 
 ```
@@ -466,11 +504,18 @@ R1# show ip ospf neighbour
 R1# show ip ospf database
 R1# show ip ospf interface
 R1# show ip ospf interface brief
+R1# show ip ospf interface s0/0/0
+R1# show ip protocols
+R1# show ip ospf
+R1# show ip route ospf
 ```
 
 Other
 ```
 R1# clear ip ospf process
+
+R1(config-if)# ip ospf hello-interval 10
+R1(config-if)# ip ospf dead-interval 30
 ```
 
 ### OSPFv3
