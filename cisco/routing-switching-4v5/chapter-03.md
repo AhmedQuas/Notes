@@ -280,8 +280,8 @@ R1# show interfaces serial
 ---
 
 <div>
-<a href="chapter-01.md">Prev: Chapter 2</a>
+<a href="chapter-02.md">Prev: Chapter 2</a>
 </div>
 <div align="right">
-<a href="chapter-03.md">Next: Chapter 4</a>
+<a href="chapter-04.md">Next: Chapter 4</a>
 </div>
