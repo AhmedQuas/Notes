@@ -46,6 +46,8 @@
     - [RIPng](#ripng)
     - [OSPFv2](#ospfv2)
     - [OSPFv3](#ospfv3)
+    - [EIGRP for IPv4](#eigrp-for-ipv4)
+    - [EIGRP for IPv6](#eigrp-for-ipv6)
   - [ACL - Access Control Lists](#acl---access-control-lists)
     - [Standard](#standard)
       - [Numered](#numered)
@@ -535,6 +537,80 @@ Other
 R1# clear ipv6 ospf process
 ```
 
+### EIGRP for IPv4
+
+```
+R1(config)# router eigrp as_number{1-65535}
+R1(config-router)# eigrp router-id {IPv4_address_uniq}
+R1(config-router)# network 172.16.0.0 #classful notation
+R1(config-router)# network 172.16.0.0 0.0.0.255 #option with wildcard mask
+R1(config-router)# no auto-summary
+R1(config-router)# redistribute static
+R1(config-router)# passive-interface g0/0
+```
+
+Auto-summary configuration
+```
+R1(config)# int s0/1/0
+R1(config-if)# ip summary-address eigrp 1 192.168.0.0 255.255.252.0
+```
+
+EIGRP authentication
+
+```
+R1(config)# key chain name-of-chain
+R1(config-keychain)# key key-id
+R1(config-keychain-key)# key-string key-string-text
+
+R1(config)# interface s0/0/0
+R1(config-if)# ip authentication mode eigrp 1 md5
+R1(config-if)# ip authentication key-chain eigrp 1 name-of-chain
+```
+
+Show commands
+
+```
+R1# show ip route {eigpr}
+R1# show ip protocols
+R1# show ip interface brief
+R1# show ip eigrp neighbors
+R1# show ip eigrp topology
+R1# show ip eigrp topology all-links
+R1# show ip eigrp interfaces
+R1# show running-config | section eigrp 1
+```
+
+Other
+
+```
+R1(config-if)# ip bandwidth-percent eigrp as_number 50(%)
+R1(config-if)# ip hello-interval eigrp 1 10
+R1(config-if)# ip hold-time eigrp 1 30
+
+R1(config-router)# variance [number]
+R1(config-router)# traffic-share balanced
+```
+
+### EIGRP for IPv6
+
+```
+R1(config)# ipv6 unicast routing
+R1(config)# ipv6 router eigrp 1
+R1(config-router)# eigrp router-id 1.1.1.1
+R1(config-router)# no shutdown
+R1(config-router)# redistribute static
+R1(config-router)# passive-interface g0/0/0
+
+R1(config)# interface s0/1/0
+R1(config-if)# ipv6 eigrp 1
+```
+
+Auto-summary configuration
+
+```
+R1(config-if)# ipv6 summary-address eigrp 1 2001:db8:acad::/48
+```
+
 ## ACL - Access Control Lists
 
 Generalną zasadą jest, że rozszerzone listy ACL umieszczamy jak najbliżej źródła, a standardowe ACL jak najbliżej celu
@@ -697,8 +773,9 @@ R1(config-if)# ip nat {inside|outside}
 ### Port Address Translation - using a pool of IP`s
 
 ```
+R1(config)# ip nat pool NAT-POOL1 209.165.200.226 209.165.200.240 netmask 255.255.255.224
 R1(config)# access-list 1 permit 192.168.1.0 0.0.0.255
-R1(config)# ip nat inside source list 1 interface s0/0/0 overload
+R1(config)# ip nat inside source list 1 pool NAT-POOL1 overload
 
 R1(config)# interface s0/0/0
 R1(config-if)# ip nat {inside|outside}
