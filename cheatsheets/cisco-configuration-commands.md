@@ -66,7 +66,8 @@
   - [NAT](#nat)
     - [Static](#static)
     - [Dynamic](#dynamic)
-    - [Port Address Translation](#port-address-translation)
+    - [Port Address Translation - using one IP](#port-address-translation---using-one-ip)
+    - [Port Address Translation - using a pool of IP`s](#port-address-translation---using-a-pool-of-ips)
     - [Port Forwarding](#port-forwarding)
     - [Show](#show)
 
@@ -683,13 +684,23 @@ R1(config)# interface g0/1
 R1(config-if)# ip nat {inside|outside}
 ```
 
-### Port Address Translation
+### Port Address Translation - using one IP
 
 ```
 R1(config)# ip access-list 1 permit 192.168.0.0 0.0.255.255
 R1(config)# ip nat source list 1 interface s0/0/0 overload
 
 R1(config)# interface g0/1
+R1(config-if)# ip nat {inside|outside}
+```
+
+### Port Address Translation - using a pool of IP`s
+
+```
+R1(config)# access-list 1 permit 192.168.1.0 0.0.0.255
+R1(config)# ip nat inside source list 1 interface s0/0/0 overload
+
+R1(config)# interface s0/0/0
 R1(config-if)# ip nat {inside|outside}
 ```
 
