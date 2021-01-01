@@ -72,6 +72,11 @@
     - [Port Address Translation - using a pool of IP`s](#port-address-translation---using-a-pool-of-ips)
     - [Port Forwarding](#port-forwarding)
     - [Show](#show)
+  - [PPP](#ppp)
+    - [PPP config](#ppp-config)
+    - [PPP PAP authentication](#ppp-pap-authentication)
+    - [PPP CHAP authentication](#ppp-chap-authentication)
+    - [PPPoE](#pppoe)
 
 # Cheetsheet: Cisco configuration commands (for CCNA)
 
@@ -797,3 +802,122 @@ R1# show ip nat translations
 R1# show ip nat statiscs
 R1# show running-config
 ```
+
+## PPP
+
+### PPP config
+
+Enable PPP protocol(encapsulation in layer 2) on given interface
+
+```
+R1(config)# interface s0/0/0
+R1(config-if)# encapsulation ppp
+```
+
+Compression(may affect system performance)
+
+```
+R1(config-if)# encapsulation ppp
+R1(config-if)# compress {predictor|stac}
+```
+
+LQM - Link Quality Monitoring
+
+```
+R1(config-if)# encapsulation ppp
+R1(config-if)# ppp quality 80[%]
+```
+
+Multilink
+
+```
+R1(config)# interface multilink 1
+R1(config)# interface s0/0/0
+R1(config-if)# encapsulation ppp
+R1(config-if)# ppp multilink
+R1(config-if)# ppp multilink group 1
+R1(config-if)# interface s0/0/1
+R1(config-if)# encapsulation ppp
+R1(config-if)# ppp multilink
+R1(config-if)# ppp multilink group 1
+```
+
+### PPP PAP authentication
+
+>The hostname on one router must match the username configured on the other router. Passwords must also match.
+
+```
+Router(config)# hostname R1
+R1(config)# username R2 password someone
+R1(config)# interface s0/0/0
+R1(config-if)# ppp authentication pap
+R1(config-if)# ppp pap sent-username R1 password sameone
+
+Router(config)# hostname R2
+R2(config)# username R1 password someone
+R2(config)# interface s0/0/0
+R2(config-if)# ppp authentication pap
+R2(config-if)# ppp pap sent-username R2 password sameone
+```
+
+### PPP CHAP authentication
+
+```
+Router(config)# hostname R1
+R1(config)# username R2 password someone
+R1(config)# interface s0/0/0
+R1(config-if)# ppp authentication chap
+
+Router(config)# hostname R2
+R2(config)# username R1 password someone
+R2(config)# interface s0/0/0
+R2(config-if)# ppp authentication chap
+```
+
+### PPPoE
+
+ISP config
+
+```
+#Create local db user
+ISP(config)# username R1 password r1-pppoe-password
+
+#Create pool of address
+ISP(config)# ip local pool PPPoEPOOL 10.0.1.1 10.0.1.10
+
+#Create Virtual Template and associate IP address 
+ISP(config)# interface virtual-template 1
+ISP(config-if)# ip address 10.0.1.254 255.255.255.0
+ISP(config-if)# mtu 1492
+ISP(config-if)# peer default ip address pool PPPoEPOOL
+ISP(config-if)# ppp authentication chap callin
+
+#Assign the virtual template to PPPoE group
+ISP(config)# bba-group pppoe global
+ISP(config-bba-group)# virtual-template 1
+
+#Associate bba-group with physical interface
+ISP(config)# interface g0/1
+ISP(config-if)# pppoe enable group global
+ISP(config-if)# no shutdown
+```
+
+Customer config
+
+```
+R1(config)# interface dialer 1
+R1(config-if)# ip mtu 1492 #domyślne 1500
+R1(config-if)# ip address negotiated
+R1(config-if)# encapsulation ppp
+
+R1(config-if)# dialer pool 1
+R1(config-if)# ppp authentication chap callin
+R1(config-if)# ppp chap hostname R1
+R1(config-if)# ppp chap password r1-pppoe-password
+R1(config-if)# no shutdown
+
+R1(config)# interface g0/0
+R1(config-if)# no ip address
+R1(config-if)# pppoe enable
+R1(config-if)# pppoe-client dial-pool-number 1
+``` 
