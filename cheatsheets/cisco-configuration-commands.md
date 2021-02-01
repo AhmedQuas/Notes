@@ -48,6 +48,7 @@
     - [OSPFv3](#ospfv3)
     - [EIGRP for IPv4](#eigrp-for-ipv4)
     - [EIGRP for IPv6](#eigrp-for-ipv6)
+    - [eBGP](#ebgp)
   - [ACL - Access Control Lists](#acl---access-control-lists)
     - [Standard](#standard)
       - [Numered](#numered)
@@ -77,6 +78,9 @@
     - [PPP PAP authentication](#ppp-pap-authentication)
     - [PPP CHAP authentication](#ppp-chap-authentication)
     - [PPPoE](#pppoe)
+  - [GRE VPN](#gre-vpn)
+  - [SNMP](#snmp)
+  - [SPAN](#span)
 
 # Cheetsheet: Cisco configuration commands (for CCNA)
 
@@ -616,6 +620,16 @@ Auto-summary configuration
 R1(config-if)# ipv6 summary-address eigrp 1 2001:db8:acad::/48
 ```
 
+### eBGP
+
+```
+R1(config)# router bgp 65000
+R1(config-router)# neighbor 209.165.200.1 remote-as 65001
+R1(config-router)# network 192.168.10.0 mask 255.255.255.0
+
+R1# show ip bgp { |summary}
+```
+
 ## ACL - Access Control Lists
 
 Generalną zasadą jest, że rozszerzone listy ACL umieszczamy jak najbliżej źródła, a standardowe ACL jak najbliżej celu
@@ -921,3 +935,46 @@ R1(config-if)# no ip address
 R1(config-if)# pppoe enable
 R1(config-if)# pppoe-client dial-pool-number 1
 ``` 
+
+## GRE VPN
+
+```
+R1(config)# interface tunnel 0
+R1(config-if)# tunnel mode gre
+R1(config-if)# ip address 172.10.10.1 255.255.255.0
+R1(config-if)# tunnel source s0/0/0
+R1(config-if)# tunnel destionation neighbor_tunnel_ip_adde
+
+R1(config)# router ospf 1
+R1(config-router)# network 172.10.10.0 0.0.0.255 area 0
+
+R1# show ip interface brief
+R1# show ip interface tunnel0
+R1# show ip route
+```
+
+## SNMP
+
+```
+R1(config)# snmp-server community ciscolab ro SNMP_ACL
+R1(config)# snmp-server location company_A
+R1(config)# snmp-server contact example@example.com
+R1(config)# snmp-server host 192.168.1.3 version 2c|3 ciscolab
+R1(config)# snmp-server enable traps
+
+R1(config)# ip access-list standard SNMP_ACL
+R1(config-std-nacl)# permit host 192.168.3.0
+
+R1(config)# snmp-server row SNMP_ACL iso included
+R1(config)# snmp-server group ADMIN v3 priv read SNMP-RO access SNMP_ACL
+R1(config)# snmp-server user USER1 ADMIN v3 auth sha cisco12345 pri aes 128 cisco54321
+
+R1# show snmp { |user|community}
+```
+
+## SPAN
+
+```
+R1(config)# monitor session 1 source interface f0/5
+R1(config)# monitor session 1 destiantion interface f0/15
+```
