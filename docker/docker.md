@@ -24,9 +24,15 @@ $ docker run hello-world
 
 `Container` - runtime instance of docker image
 
-`DOCKERFILE` - set of commands that is a recipe how to build a image. 
+`DOCKERFILE` - set of commands that is a recipe how to build a image. It is a definition of image.
+
+Caching & intermediate images(dangling images) building concept
 
 We must avoid interactive commands - replace apt install to apt install -y
+
+`Docker compose` - used to define application, how your services work together on one single machine
+
+`Docker swarm` - orchestartion solution for docker, cluster architecture & automation.
 
 ## Useful commands
 
@@ -98,6 +104,18 @@ Delete docker container/image
 $ docker {rm|rmi} [-f] IMAGE_ID
 ```
 
+Remove all containers/images
+
+```
+$ docker {rm|rmi} $(docker ps -a)
+```
+
+Delete all dangling images
+
+```
+$ docker rmi $(docker images -q --filter "dangling=true")
+```
+
 Show differences with base image
 
 ```
@@ -114,6 +132,12 @@ Change image name
 
 ```
 $ docker tag NEW_TAG IMAGE_ID
+```
+
+Information about specified container
+
+```
+$ docker inspect CONTAINER_ID
 ```
 
 Help
@@ -142,3 +166,46 @@ Types of namespaces:
     ```
     registry.example.com:5000/my-image
     ```
+
+Ports
+
+Publish all exposed ports to random ports
+
+```
+$ docker run -d {-P|--publish-all} IMAGE_NAME 
+```
+
+Show external ports
+
+```
+$ docker port CONTAINER_ID
+```
+
+Specify port mappings
+
+```
+$ docker run -d -p 80:8080 IMAGE_NAME
+```
+
+Volumes
+
+```
+$ docker run -d -v "$PWD"/website:/var/www/html IMAGE_NAME
+```
+
+Shared Volume
+
+```
+$ docker run -v /var/shared_volume IMAGE_NAME
+$ docker run --volumes-from CONTAINER_1_NAME IMAGE_NAME
+```
+
+Dockerhub
+
+```
+$ docker login
+$ docker tag IMAGE_NAME USER/IMAGE_NEW_NAME
+$ docker push USER/IMAGE_NEW_NAME
+$ docker pull USER/IMAGE_NEW_NAME
+$ docker logout
+```
