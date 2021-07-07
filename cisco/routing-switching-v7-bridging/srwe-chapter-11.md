@@ -1,12 +1,16 @@
 ### Spis treści
-- [Chapter 1: LAN Security Concepts](#chapter-1-lan-security-concepts)
-  - [1.1 Endpoint Security](#11-endpoint-security)
+- [Chapter 2: Switch Security Configuration](#chapter-2-switch-security-configuration)
+  - [2.1 Port Security](#21-port-security)
+  - [2.2 Mitgate VLAN attacks](#22-mitgate-vlan-attacks)
+  - [2.3 Mitigate DHCP attacks](#23-mitigate-dhcp-attacks)
+  - [2.4 Mitigate ARP attacks](#24-mitigate-arp-attacks)
+  - [2.5 Mitigate STP attacks](#25-mitigate-stp-attacks)
 
-# Chapter 11: Switch Security Configuration
+# Chapter 2: Switch Security Configuration
 
 SRWE - Switching, Routing and Wireless Essentials Bridging Concept
 
-## 1.1 Port Security
+## 2.1 Port Security
 
 >Layer 2 devices are considered to be the weakest link in a company’s security infrastructure.
 
@@ -50,7 +54,7 @@ Methods of learning MAC addresses:
 - sticky - MAC address saved in NVRAM
 
 
-## 1.2 Mitgate VLAN attacks
+## 2.2 Mitgate VLAN attacks
 
 VLAN Hopping can be alunched on one of three ways:
 - spoofing DTP from the attacking host to cause the switch to enter trunking mode - the attacker can send traffic tagged with the target VLAN, and the switch then delivers the packets to the destination,
@@ -64,7 +68,7 @@ Recomendation:
 - disable DTP on trunking ports by using `switchport nonegotiate`,
 - set native vlan to vlan other than 1 by using `switchport trunk native vlan VLAN_ID`
 
-## 1.3 Mitigate DHCP attacks
+## 2.3 Mitigate DHCP attacks
 
 DHCP Snooping - does not rely on source MAC addresses. Instead, DHCP snooping determines whether DHCP messages are from an administratively configured trusted or untrusted source. It then filters DHCP messages and rate-limits DHCP traffic from untrusted sources.
 
@@ -86,7 +90,7 @@ S1# show ip dhcp snooping binding
 
 >DHCP snooping is also required by Dynamic ARP Inspection (DAI)
 
-## 1.4 Mitigate ARP attacks
+## 2.4 Mitigate ARP attacks
 
 Dynamic ARP inspection (`DAI`) requires DHCP snooping and helps prevent ARP attacks by:
 - not relaying invalid or gratuitous ARP Requests out to other ports in the same VLAN,
@@ -117,7 +121,7 @@ ARP validation types:
 - `source MAC` - Checks the source MAC address in the Ethernet header against the sender MAC address in the ARP body.
 - `IP address` - Checks the ARP body for invalid and unexpected IP addresses including addresses 0.0.0.0, 255.255.255.255, and all IP multicast addresses.
 
-## 1.5 Mitigate STP attacks
+## 2.5 Mitigate STP attacks
 
 `PortFast` - immediately brings an interface configured as an access port to the forwarding state from a blocking state, bypassing the listening and learning states. Apply to all end-user ports. PortFast should only be configured on ports attached to end devices
 
